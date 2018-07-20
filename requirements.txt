@@ -1,0 +1,13 @@
+flask
+flask-cors
+flask-mail
+flask-migrate
+flask-restful
+flask-sqlalchemy
+sqlalchemy
+flask-migrate
+bcrypt
+itsdangerous
+flask-httpauth
+numpy
+pandas
