@@ -162,3 +162,25 @@ class User(db.Model):
             return None  # invalid token
         user = User.query.get(data['id'])
         return user
+
+
+class Dataset(db.Model):
+    __tablename__ = 'dataset'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100))
+
+    datapoints = db.relationship('Datapoint', backref='dataset')
+
+    def __repr__(self):
+        return '<Dataset {}>'.format(self.name)
+
+
+class Datapoint(db.Model):
+    __tablename__ = 'datapoint'
+    id = db.Column(db.Integer, primary_key=True)
+    dataset_id = db.Column(db.Integer, db.ForeignKey('dataset.id'))
+    name = db.Column(db.String(100))
+    query = db.Column(db.text())
+
+    def __repr__(self):
+        return '<Datapoint {}>'.format(self.id)

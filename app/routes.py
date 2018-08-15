@@ -7,6 +7,7 @@ from app.resources.patient_meal import MealListByPatient, PatientListByMeal
 from app.resources.patient_requirement import PatientListByRequirement, RequirementListByPatient
 from app.resources.meal_requirement import MealListByRequirement, RequirementListByMeal
 from app.resources.auth import TokenResource
+from app.resources.dataset import DatasetListResource, DatasetResource, DatapointListResource, DatapointResource
 
 api = Api(app)
 
@@ -41,6 +42,16 @@ api.add_resource(MealListByRequirement, '/mealservice/requirement/<int:id>/meal'
                  endpoint='meal_list_by_requirement')
 api.add_resource(RequirementListByMeal, '/mealservice/meal/<int:id>/requirement',
                  endpoint='requirement_list_by_meal')
+
+# Dataset resource
+api.add_resource(DatasetListResource, '/biservice/dataset',
+                 endpoint='datasets')
+api.add_resource(DatasetResource, '/biservice/dataset/<int:id>',
+                 resource='dataset')
+api.add_resource(DatapointListResource, '/biservice/dataset/<int:id>/datapoint',
+                 endpoint='datapoints')
+api.add_resource(DatapointResource, '/biservice/dataset/<int:id>/datapoint/<int:id>',
+                 endpoint='datapoint')
 
 # Token resource
 api.add_resource(TokenResource, '/biservice/auth/token', endpoint='auth_token')
